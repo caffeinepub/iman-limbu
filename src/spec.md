@@ -1,10 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Pivot the app to a minimal landing page that shows only the name "Iman limbu" and sets the browser tab title to "Iman limbu".
+**Goal:** Make the website name configurable from a single source of truth and apply it consistently to the browser/tab title, HTML metadata, and the only visible text on initial load.
 
 **Planned changes:**
-- Update the HTML page `<title>` to exactly "Iman limbu".
-- Replace the current UI with a minimal landing page that renders a single, centered text element reading exactly "Iman limbu" with no other visible UI.
+- Create a single, clearly-defined configuration location for the website name string to avoid duplicated hard-coded copies.
+- Update the landing page so that on initial load the only visible on-page text is exactly the configured website name.
+- Set the document/browser title to the configured website name.
+- Add basic HTML head metadata that uses the same configured website name (at minimum: `title` and `og:title`) without introducing any additional visible UI text.
 
-**User-visible outcome:** When the site loads, the browser tab shows "Iman limbu" and the page displays only a centered "Iman limbu" text on an otherwise empty page (readable in light and dark mode).
+**User-visible outcome:** On first load, the page shows only the website name, and the browser tab title and common preview metadata reflect the same configured name.

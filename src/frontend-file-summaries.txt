@@ -1,5 +1,5 @@
 {
-  "frontend/src/App.tsx": "Minimal app component that displays only \"Iman limbu\" centered on the page using theme tokens for light/dark mode compatibility.",
+  "frontend/src/App.tsx": "Minimal app component that displays the configured site name centered on the page and sets document metadata on mount using the site configuration.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profile management, conversation retrieval, message sending with client-side reply generation, and conversation clearing.",
   "frontend/src/hooks/useCompanionSettings.ts": "Custom hook for managing companion settings (name, vibe, style) with localStorage persistence.",
   "frontend/src/components/LoginButton.tsx": "Authentication button component that handles Internet Identity login/logout with proper state management and query cache clearing.",
@@ -15,5 +15,7 @@
   "frontend/src/lib/replyEngine/generateReply.ts": "Main reply generation function that combines intent detection, template selection, seeded randomness, and boundary enforcement.",
   "frontend/src/index.css": "Global styles with warm cozy OKLCH color palette (rose/pink/amber tones) for both light and dark modes, custom animations, and typography.",
   "frontend/tailwind.config.js": "Tailwind configuration with extended warm color palette, custom border radius, Inter font family, and soft shadows for the cozy romantic theme.",
-  "frontend/index.html": "HTML entry point with page title set to \"Iman limbu\"."
+  "frontend/index.html": "HTML entry point with empty title tag that gets populated at runtime by the React app.",
+  "frontend/src/config/site.ts": "Single source of truth configuration file exporting the website name constant.",
+  "frontend/src/lib/siteMetadata.ts": "Helper function that applies site metadata (document title, og:title, description tags) to the HTML head without affecting visible UI."
 }

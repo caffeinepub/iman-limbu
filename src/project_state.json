@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "Pivot project scope from an AI girlfriend chat app to a simple personal website/landing page that, on open, shows only the user's name and website name: \"Iman limbu\".",
   "architectural_notes": [
     "Deployment domain/slug must be 5–50 characters and contain only letters, numbers, and hyphens (no parentheses)."
@@ -65,6 +65,22 @@
         "REQ-8"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-introduce-a-single-source-of-truth-for-the-website-name-site-title-branding-string-and-ensure-it-is-used-consistently-for-both-a-the-browser-tab-page-title-and-b-the-only-visible-on-page-text-on-initial-load",
+      "title": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-html-metadata-that-reflects-the-same-website-name-for-common-previews-search-contexts-e-g-document-title-and-open-graph-title-without-adding-any-additional-visible-ui-text",
+      "title": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -85,6 +101,12 @@
     {
       "id": "AR-6",
       "summary": "Create a minimal landing page where the only visible content on load is the name/title \"Iman limbu\" (as both the page/website name and displayed text).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Update the website name (site/page title/branding) to the desired name (user to specify)",
       "reqIds": [],
       "status": "pending"
     }

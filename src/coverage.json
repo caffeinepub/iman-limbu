@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T13:22:41.759Z",
+  "generatedAt": "2026-02-11T13:35:20.653Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -11,37 +11,44 @@
     "implemented": 2,
     "items": [
       {
-        "id": "REQ-7",
-        "summary": "Change the browser tab/page title to exactly \"Iman limbu\".",
+        "id": "REQ-10",
+        "summary": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/index.html"
+          "frontend/src/lib/siteMetadata.ts",
+          "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/index.html"
+          "frontend/src/lib/siteMetadata.ts",
+          "frontend/src/App.tsx"
         ]
       },
       {
-        "id": "REQ-8",
-        "summary": "Replace the current app UI with a minimal landing page so that on initial load the only visible on-page text is exactly \"Iman limbu\" (no buttons, no chat UI, no footer text, no other labels).",
+        "id": "REQ-9",
+        "summary": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/src/config/site.ts",
+          "frontend/src/App.tsx",
+          "frontend/index.html"
         ],
         "matchedFiles": [
-          "frontend/src/App.tsx"
+          "frontend/src/config/site.ts",
+          "frontend/src/App.tsx",
+          "frontend/index.html"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/index.html",
     "frontend/src/App.tsx",
+    "frontend/src/config/site.ts",
+    "frontend/src/lib/siteMetadata.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

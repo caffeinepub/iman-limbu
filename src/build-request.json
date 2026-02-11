@@ -1,53 +1,51 @@
 {
   "kind": "build_request",
-  "title": "Pivot app to minimal landing page showing only “Iman limbu”",
+  "title": "Make the website name configurable and applied consistently",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-7",
-      "text": "Change the browser tab/page title to exactly \"Iman limbu\".",
+      "id": "REQ-9",
+      "text": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-11"
+          "msg-6"
         ],
         "quotes": [
-          "Make website when website opens only see my name Iman limbu and website name Iman limbu"
+          "Web site name"
         ]
       },
       "acceptanceCriteria": [
-        "In frontend/index.html, the <title> text is exactly \"Iman limbu\".",
-        "After loading the site, the browser tab title shows \"Iman limbu\"."
+        "There is one clearly-defined place to update the website name string (no duplicated hard-coded copies across files).",
+        "The browser tab/page title matches the configured website name.",
+        "On initial load, the only visible on-page text matches the configured website name exactly (no additional labels, buttons, footers, or helper text)."
       ]
     },
     {
-      "id": "REQ-8",
-      "text": "Replace the current app UI with a minimal landing page so that on initial load the only visible on-page text is exactly \"Iman limbu\" (no buttons, no chat UI, no footer text, no other labels).",
+      "id": "REQ-10",
+      "text": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-11"
+          "msg-6"
         ],
         "quotes": [
-          "Make website when website opens only see my name Iman limbu and website name Iman limbu"
+          "Web site name"
         ]
       },
       "acceptanceCriteria": [
-        "On first load, the page shows only one visible text element and it reads exactly: \"Iman limbu\".",
-        "There are no other visible UI elements such as login buttons, headers, footers, chat thread, settings, avatars, or descriptive paragraphs.",
-        "The displayed \"Iman limbu\" text is centered on the page (horizontally and vertically) and remains readable in both light and dark mode."
+        "The HTML head contains metadata for the site that uses the same configured website name string (at minimum: title/og:title).",
+        "No new visible text appears on the landing page after these metadata changes."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui (read-only).",
-    "Do not modify immutable hook/provider files (e.g., frontend/src/hooks/useInternetIdentity.ts/useActor.ts, frontend/src/main.tsx).",
-    "Backend must remain single-actor; do not introduce additional canisters/services."
+    "Do not modify any files under frontend/src/components/ui or any other frontend immutable paths listed in SYSTEM_CONTEXT.",
+    "Keep the landing page minimal: on initial load, the only visible on-page text must be exactly the website name string."
   ],
   "nonGoals": [
-    "Implementing or preserving the AI companion chat experience (message thread, typing indicator, reply engine).",
-    "Internet Identity authentication UI/flows for this landing page.",
-    "Persisting or displaying any user profile or conversation data on this landing page."
+    "Adding new pages, navigation, buttons, or a chat UI.",
+    "Changing backend canister logic or data models."
   ],
   "imageRequirements": {
     "required": [],

@@ -2,10 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-change-the-browser-tab-page-title-to-exactly-iman-limbu",
-      "featureTitle": "Change the browser tab/page title to exactly \"Iman limbu\".",
+      "featureId": "feature-introduce-a-single-source-of-truth-for-the-website-name-site-title-branding-string-and-ensure-it-is-used-consistently-for-both-a-the-browser-tab-page-title-and-b-the-only-visible-on-page-text-on-initial-load",
+      "featureTitle": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
       "files": [
-        "frontend/index.html"
+        "frontend/index.html",
+        "frontend/src/App.tsx",
+        "frontend/src/config/site.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -16,15 +18,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-7"
+        "REQ-9"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-replace-the-current-app-ui-with-a-minimal-landing-page-so-that-on-initial-load-the-only-visible-on-page-text-is-exactly-iman-limbu-no-buttons-no-chat-ui-no-footer-text-no-other-labels",
-      "featureTitle": "Replace the current app UI with a minimal landing page so that on initial load the only visible on-page text is exactly \"Iman limbu\" (no buttons, no chat UI, no footer text, no other labels).",
+      "featureId": "feature-add-basic-html-metadata-that-reflects-the-same-website-name-for-common-previews-search-contexts-e-g-document-title-and-open-graph-title-without-adding-any-additional-visible-ui-text",
+      "featureTitle": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/lib/siteMetadata.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -35,7 +38,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-8"
+        "REQ-10"
       ],
       "confidence": "high"
     }

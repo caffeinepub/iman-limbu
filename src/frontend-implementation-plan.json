@@ -1,36 +1,51 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Pivot app to minimal “Iman limbu” landing page",
+  "title": "Configurable site name applied consistently to UI and document metadata",
   "requirements": [
     {
-      "id": "REQ-7",
-      "summary": "Set the browser tab/page title to exactly \"Iman limbu\".",
+      "id": "REQ-9",
+      "summary": "Create a single configured website name and use it for both the browser title and the only visible landing-page text.",
       "acceptanceCriteria": [
-        "In frontend/index.html, the <title> text is exactly \"Iman limbu\".",
-        "After loading the site, the browser tab title shows \"Iman limbu\"."
+        "There is one clearly-defined place to update the website name string (no duplicated hard-coded copies across files).",
+        "The browser tab/page title matches the configured website name.",
+        "On initial load, the only visible on-page text matches the configured website name exactly (no additional labels, buttons, footers, or helper text)."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/config/site.ts",
+          "operation": "create",
+          "description": "Add a single source of truth export for the website name (site title/branding string) to be reused across the app."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace hard-coded on-page text with the configured website name and set the browser document title from the same configured value (ensuring no additional visible UI text is introduced)."
+        },
+        {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Replace the existing <title> value with exactly \"Iman limbu\" and ensure no runtime code overrides it."
+          "description": "Remove the hard-coded website name from the static <title> so the runtime-configured title (from the single source of truth) is authoritative and avoids duplicated strings."
         }
       ]
     },
     {
-      "id": "REQ-8",
-      "summary": "Replace the current UI with a single centered text element showing exactly \"Iman limbu\".",
+      "id": "REQ-10",
+      "summary": "Add non-visible HTML head metadata (including Open Graph title) derived from the configured website name without adding visible UI text.",
       "acceptanceCriteria": [
-        "On first load, the page shows only one visible text element and it reads exactly: \"Iman limbu\".",
-        "There are no other visible UI elements such as login buttons, headers, footers, chat thread, settings, avatars, or descriptive paragraphs.",
-        "The displayed \"Iman limbu\" text is centered on the page (horizontally and vertically) and remains readable in both light and dark mode."
+        "The HTML head contains metadata for the site that uses the same configured website name string (at minimum: title/og:title).",
+        "No new visible text appears on the landing page after these metadata changes."
       ],
       "file_operations": [
         {
+          "path": "frontend/src/lib/siteMetadata.ts",
+          "operation": "create",
+          "description": "Create a small helper to apply head metadata using the configured website name (at minimum setting document title and ensuring an og:title meta tag exists/updates) without affecting visible UI."
+        },
+        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Remove/stop rendering all existing app UI (auth, chat, settings, footer, background images) and render only a single centered text element whose content is exactly \"Iman limbu\". Use existing Tailwind/global theme tokens (e.g., bg-background/text-foreground) so it stays readable in light and dark mode, without modifying immutable hooks/providers or any files under frontend/src/components/ui."
+          "description": "Wire the site metadata helper to run on initial load using the configured website name, ensuring og:title and document title match while keeping the rendered page text unchanged (still only the website name)."
         }
       ]
     }
