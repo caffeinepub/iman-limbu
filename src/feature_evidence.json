@@ -1,0 +1,43 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-change-the-browser-tab-page-title-to-exactly-iman-limbu",
+      "featureTitle": "Change the browser tab/page title to exactly \"Iman limbu\".",
+      "files": [
+        "frontend/index.html"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-the-current-app-ui-with-a-minimal-landing-page-so-that-on-initial-load-the-only-visible-on-page-text-is-exactly-iman-limbu-no-buttons-no-chat-ui-no-footer-text-no-other-labels",
+      "featureTitle": "Replace the current app UI with a minimal landing page so that on initial load the only visible on-page text is exactly \"Iman limbu\" (no buttons, no chat UI, no footer text, no other labels).",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

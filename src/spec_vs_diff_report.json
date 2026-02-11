@@ -1,0 +1,30 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T13:22:41.757Z",
+  "summary": "REQ-7 and REQ-8 appear implemented: the HTML title is set to \"Iman limbu\" and the React App renders only a centered \"Iman limbu\" heading with light/dark theme-compatible classes. No evidence in the diff of additional UI being rendered on the landing page.",
+  "missing_requirements": [],
+  "hallucinated_features": [
+    {
+      "description": "Project metadata/state updated to describe a broader pivot from an AI chat app to a landing page (non-functional documentation/state change).",
+      "reason": "The BuildRequest only asks for the title change and minimal landing page UI, not updates to project tracking/state files.",
+      "evidence": [
+        "project_state.json (truncated)"
+      ]
+    },
+    {
+      "description": "Updated/generated frontend file summary documentation.",
+      "reason": "Not requested as part of REQ-7/REQ-8; appears to be ancillary documentation.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.86,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "frontend/src/App.tsx": "Minimal app component that displays only \"Iman limbu\" centered on the page using theme tokens for light/dark mode compatibility.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profile management, conversation retrieval, message sending with client-side reply generation, and conversation clearing.",
+  "frontend/src/hooks/useCompanionSettings.ts": "Custom hook for managing companion settings (name, vibe, style) with localStorage persistence.",
+  "frontend/src/components/LoginButton.tsx": "Authentication button component that handles Internet Identity login/logout with proper state management and query cache clearing.",
+  "frontend/src/components/ProfileSetup.tsx": "Initial profile setup screen that prompts authenticated users to enter their name on first login.",
+  "frontend/src/components/chat/MessageThread.tsx": "Scrollable message thread component that displays user and companion messages with distinct styling, avatars, and timestamps.",
+  "frontend/src/components/chat/MessageComposer.tsx": "Message input component with textarea, send button, and keyboard shortcuts (Enter to send, Shift+Enter for newline).",
+  "frontend/src/components/chat/TypingIndicator.tsx": "Animated typing indicator component shown while the companion is \"thinking\" before replying.",
+  "frontend/src/components/settings/SettingsView.tsx": "Settings dialog for customizing companion name, relationship vibe, and conversation style with immediate effect on replies.",
+  "frontend/src/lib/replyEngine/intents.ts": "Intent detection system using keyword-based pattern matching for common conversation intents (greeting, sad, anxious, etc.).",
+  "frontend/src/lib/replyEngine/persona.ts": "Persona style guide and safety boundaries that filter responses to ensure appropriate, respectful content.",
+  "frontend/src/lib/replyEngine/responseLibrary.ts": "Curated response template library organized by intent, vibe, and style with multiple variants per combination.",
+  "frontend/src/lib/replyEngine/seededRandom.ts": "Deterministic pseudo-random selection utility using Linear Congruential Generator for reproducible response variant selection.",
+  "frontend/src/lib/replyEngine/generateReply.ts": "Main reply generation function that combines intent detection, template selection, seeded randomness, and boundary enforcement.",
+  "frontend/src/index.css": "Global styles with warm cozy OKLCH color palette (rose/pink/amber tones) for both light and dark modes, custom animations, and typography.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended warm color palette, custom border radius, Inter font family, and soft shadows for the cozy romantic theme.",
+  "frontend/index.html": "HTML entry point with page title set to \"Iman limbu\"."
+}

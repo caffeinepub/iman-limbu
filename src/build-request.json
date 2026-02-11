@@ -1,0 +1,56 @@
+{
+  "kind": "build_request",
+  "title": "Pivot app to minimal landing page showing only “Iman limbu”",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-7",
+      "text": "Change the browser tab/page title to exactly \"Iman limbu\".",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-11"
+        ],
+        "quotes": [
+          "Make website when website opens only see my name Iman limbu and website name Iman limbu"
+        ]
+      },
+      "acceptanceCriteria": [
+        "In frontend/index.html, the <title> text is exactly \"Iman limbu\".",
+        "After loading the site, the browser tab title shows \"Iman limbu\"."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Replace the current app UI with a minimal landing page so that on initial load the only visible on-page text is exactly \"Iman limbu\" (no buttons, no chat UI, no footer text, no other labels).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-11"
+        ],
+        "quotes": [
+          "Make website when website opens only see my name Iman limbu and website name Iman limbu"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On first load, the page shows only one visible text element and it reads exactly: \"Iman limbu\".",
+        "There are no other visible UI elements such as login buttons, headers, footers, chat thread, settings, avatars, or descriptive paragraphs.",
+        "The displayed \"Iman limbu\" text is centered on the page (horizontally and vertically) and remains readable in both light and dark mode."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit any files under frontend/src/components/ui (read-only).",
+    "Do not modify immutable hook/provider files (e.g., frontend/src/hooks/useInternetIdentity.ts/useActor.ts, frontend/src/main.tsx).",
+    "Backend must remain single-actor; do not introduce additional canisters/services."
+  ],
+  "nonGoals": [
+    "Implementing or preserving the AI companion chat experience (message thread, typing indicator, reply engine).",
+    "Internet Identity authentication UI/flows for this landing page.",
+    "Persisting or displaying any user profile or conversation data on this landing page."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
