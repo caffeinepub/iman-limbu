@@ -1,54 +1,77 @@
 {
   "kind": "build_request",
-  "title": "Make the website name configurable and applied consistently",
+  "title": "Fix missing photo and non-working music on landing page",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
+      "id": "REQ-1",
+      "text": "Fix the landing page photo so the user’s photo reliably displays in production, rather than failing to load from the current Google Photos share URL (https://photos.app.goo.gl/UswyaKrbtbzie7AQ8). Use a local static photo asset as the primary source when present, and keep a graceful fallback to the existing placeholder image (/assets/generated/photo-placeholder.dim_1024x1024.png) if the local photo is missing or fails to load.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-4"
         ],
         "quotes": [
-          "Web site name"
+          "Music is not working and were is my photo"
         ]
       },
       "acceptanceCriteria": [
-        "There is one clearly-defined place to update the website name string (no duplicated hard-coded copies across files).",
-        "The browser tab/page title matches the configured website name.",
-        "On initial load, the only visible on-page text matches the configured website name exactly (no additional labels, buttons, footers, or helper text)."
+        "When the app is deployed, the photo renders without requiring access to Google Photos share pages.",
+        "If the local photo asset is missing or cannot be loaded, the UI shows /assets/generated/photo-placeholder.dim_1024x1024.png without breaking layout.",
+        "The Google Photos URL is not the only/primary way the photo is displayed (it may be retained only as an optional backup if needed)."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
+      "id": "REQ-2",
+      "text": "Fix the landing page music player so the track loads and plays reliably in production using the local static audio file path currently referenced by the app (/assets/20-dollears-in-my-pocket.mp3). Add user-visible error handling so that if the audio file cannot be fetched/decoded, the UI clearly indicates the track failed to load and suggests refreshing or checking the asset path.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-4"
         ],
         "quotes": [
-          "Web site name"
+          "Music is not working and were is my photo"
         ]
       },
       "acceptanceCriteria": [
-        "The HTML head contains metadata for the site that uses the same configured website name string (at minimum: title/og:title).",
-        "No new visible text appears on the landing page after these metadata changes."
+        "The audio player successfully plays the track in a deployed build (not only locally).",
+        "If /assets/20-dollears-in-my-pocket.mp3 is missing or fails to load, the page shows an English error message near the player (and does not silently fail).",
+        "The track label text remains exactly: \"20 dollears in my pocket\"."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Ensure all required static media assets are present in the frontend build output under the public static assets path so that the deployed site can fetch them via absolute URLs: (1) the user photo asset and (2) the MP3 file.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Music is not working and were is my photo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A square portrait photo asset exists at a stable public path and is the one used by the landing page photo component.",
+        "The MP3 file is present at /assets/20-dollears-in-my-pocket.mp3 in the deployed build output and returns a successful HTTP response when requested.",
+        "No backend changes are required for serving the photo/audio."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/components/ui or any other frontend immutable paths listed in SYSTEM_CONTEXT.",
-    "Keep the landing page minimal: on initial load, the only visible on-page text must be exactly the website name string."
+    "Do not edit files under frontend/src/components/ui (read-only).",
+    "Do not edit frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths).",
+    "Keep all backend logic in the existing single Motoko actor (backend/main.mo); no new backend canisters/services."
   ],
   "nonGoals": [
-    "Adding new pages, navigation, buttons, or a chat UI.",
-    "Changing backend canister logic or data models."
+    "Adding new authentication methods beyond Internet Identity.",
+    "Adding streaming, playlists, or a full music library.",
+    "Building an admin upload system for photos/audio (static assets only for this fix)."
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Square portrait photo (iman-photo.dim_1024x1024.jpg)"
+    ],
     "edits": []
   }
 }

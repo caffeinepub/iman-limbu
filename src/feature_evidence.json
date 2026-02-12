@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-introduce-a-single-source-of-truth-for-the-website-name-site-title-branding-string-and-ensure-it-is-used-consistently-for-both-a-the-browser-tab-page-title-and-b-the-only-visible-on-page-text-on-initial-load",
-      "featureTitle": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
+      "featureId": "feature-fix-the-landing-page-photo-so-the-user-s-photo-reliably-displays-in-production-rather-than-failing-to-load-from-the-current-google-photos-share-url-https-photos-app-goo-gl-uswyakrbtbzie7aq8-use-a-local-static-photo-asset-as-the-primary-source-when-present-and-keep-a-graceful-fallback-to-the-existing-placeholder-image-assets-generated-photo-placeholder-dim-1024x1024-png-if-the-local-photo-is-missing-or-fails-to-load",
+      "featureTitle": "Fix the landing page photo so the user’s photo reliably displays in production, rather than failing to load from the current Google Photos share URL (https://photos.app.goo.gl/UswyaKrbtbzie7AQ8). Use a local static photo asset as the primary source when present, and keep a graceful fallback to the existing placeholder image (/assets/generated/photo-placeholder.dim_1024x1024.png) if the local photo is missing or fails to load.",
       "files": [
-        "frontend/index.html",
-        "frontend/src/App.tsx",
-        "frontend/src/config/site.ts"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,16 +16,15 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-9"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-basic-html-metadata-that-reflects-the-same-website-name-for-common-previews-search-contexts-e-g-document-title-and-open-graph-title-without-adding-any-additional-visible-ui-text",
-      "featureTitle": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
+      "featureId": "feature-fix-the-landing-page-music-player-so-the-track-loads-and-plays-reliably-in-production-using-the-local-static-audio-file-path-currently-referenced-by-the-app-assets-20-dollears-in-my-pocket-mp3-add-user-visible-error-handling-so-that-if-the-audio-file-cannot-be-fetched-decoded-the-ui-clearly-indicates-the-track-failed-to-load-and-suggests-refreshing-or-checking-the-asset-path",
+      "featureTitle": "Fix the landing page music player so the track loads and plays reliably in production using the local static audio file path currently referenced by the app (/assets/20-dollears-in-my-pocket.mp3). Add user-visible error handling so that if the audio file cannot be fetched/decoded, the UI clearly indicates the track failed to load and suggests refreshing or checking the asset path.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/lib/siteMetadata.ts"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -38,7 +35,26 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-10"
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-all-required-static-media-assets-are-present-in-the-frontend-build-output-under-the-public-static-assets-path-so-that-the-deployed-site-can-fetch-them-via-absolute-urls-1-the-user-photo-asset-and-2-the-mp3-file",
+      "featureTitle": "Ensure all required static media assets are present in the frontend build output under the public static assets path so that the deployed site can fetch them via absolute URLs: (1) the user photo asset and (2) the MP3 file.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
       ],
       "confidence": "high"
     }

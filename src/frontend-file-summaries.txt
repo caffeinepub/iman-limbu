@@ -1,5 +1,5 @@
 {
-  "frontend/src/App.tsx": "Minimal app component that displays the configured site name centered on the page and sets document metadata on mount using the site configuration.",
+  "frontend/src/App.tsx": "Personal landing page component displaying the site name, a photo with local static asset source and fallback handling, an HTML5 audio player with error handling and user-visible error messages for the track \"20 dollears in my pocket\", and a footer with attribution.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including user profile management, conversation retrieval, message sending with client-side reply generation, and conversation clearing.",
   "frontend/src/hooks/useCompanionSettings.ts": "Custom hook for managing companion settings (name, vibe, style) with localStorage persistence.",
   "frontend/src/components/LoginButton.tsx": "Authentication button component that handles Internet Identity login/logout with proper state management and query cache clearing.",

@@ -1,41 +1,49 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T13:35:20.653Z",
+  "generatedAt": "2026-02-12T00:55:39.019Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
+        "id": "REQ-1",
+        "summary": "Fix the landing page photo so the user’s photo reliably displays in production, rather than failing to load from the current Google Photos share URL (https://photos.app.goo.gl/UswyaKrbtbzie7AQ8). Use a local static photo asset as the primary source when present, and keep a graceful fallback to the existing placeholder image (/assets/generated/photo-placeholder.dim_1024x1024.png) if the local photo is missing or fails to load.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/lib/siteMetadata.ts",
+          "frontend/src/App.tsx",
+          "frontend/public/assets/generated/iman-photo.dim_1024x1024.jpg"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/public/assets/generated/iman-photo.dim_1024x1024.jpg"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Fix the landing page music player so the track loads and plays reliably in production using the local static audio file path currently referenced by the app (/assets/20-dollears-in-my-pocket.mp3). Add user-visible error handling so that if the audio file cannot be fetched/decoded, the UI clearly indicates the track failed to load and suggests refreshing or checking the asset path.",
+        "status": "implemented",
+        "plannedFiles": [
           "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/lib/siteMetadata.ts",
           "frontend/src/App.tsx"
         ]
       },
       {
-        "id": "REQ-9",
-        "summary": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
+        "id": "REQ-3",
+        "summary": "Ensure all required static media assets are present in the frontend build output under the public static assets path so that the deployed site can fetch them via absolute URLs: (1) the user photo asset and (2) the MP3 file.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/config/site.ts",
-          "frontend/src/App.tsx",
-          "frontend/index.html"
+          "frontend/public/assets/20-dollears-in-my-pocket.mp3",
+          "frontend/src/App.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/config/site.ts",
-          "frontend/src/App.tsx",
-          "frontend/index.html"
+          "frontend/src/App.tsx"
         ]
       }
     ]
@@ -45,10 +53,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.html",
+    "frontend/public/assets/generated/iman-photo.dim_1024x1024.jpg",
     "frontend/src/App.tsx",
-    "frontend/src/config/site.ts",
-    "frontend/src/lib/siteMetadata.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

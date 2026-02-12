@@ -1,51 +1,63 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Configurable site name applied consistently to UI and document metadata",
+  "title": "Fix landing page static photo + music reliability in production",
   "requirements": [
     {
-      "id": "REQ-9",
-      "summary": "Create a single configured website name and use it for both the browser title and the only visible landing-page text.",
+      "id": "REQ-1",
+      "summary": "Replace Google Photos share link with a local static portrait photo as the primary source and keep a graceful placeholder fallback on load failure.",
       "acceptanceCriteria": [
-        "There is one clearly-defined place to update the website name string (no duplicated hard-coded copies across files).",
-        "The browser tab/page title matches the configured website name.",
-        "On initial load, the only visible on-page text matches the configured website name exactly (no additional labels, buttons, footers, or helper text)."
+        "When the app is deployed, the photo renders without requiring access to Google Photos share pages.",
+        "If the local photo asset is missing or cannot be loaded, the UI shows /assets/generated/photo-placeholder.dim_1024x1024.png without breaking layout.",
+        "The Google Photos URL is not the only/primary way the photo is displayed (it may be retained only as an optional backup if needed)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/config/site.ts",
-          "operation": "create",
-          "description": "Add a single source of truth export for the website name (site title/branding string) to be reused across the app."
-        },
-        {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Replace hard-coded on-page text with the configured website name and set the browser document title from the same configured value (ensuring no additional visible UI text is introduced)."
+          "description": "Update the landing page photo <img> to use the local static asset at /assets/generated/iman-photo.dim_1024x1024.jpg as the primary src, with onError-driven fallback to /assets/generated/photo-placeholder.dim_1024x1024.png. Remove reliance on the Google Photos share URL as the primary source and ensure the layout remains stable when switching to fallback."
         },
         {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Remove the hard-coded website name from the static <title> so the runtime-configured title (from the single source of truth) is authoritative and avoids duplicated strings."
+          "path": "frontend/public/assets/generated/iman-photo.dim_1024x1024.jpg",
+          "operation": "create",
+          "description": "Add the required square portrait photo asset to the public static directory so it is served in production at the absolute URL /assets/generated/iman-photo.dim_1024x1024.jpg."
         }
       ]
     },
     {
-      "id": "REQ-10",
-      "summary": "Add non-visible HTML head metadata (including Open Graph title) derived from the configured website name without adding visible UI text.",
+      "id": "REQ-2",
+      "summary": "Ensure the landing page audio player reliably loads the local MP3 in production and shows a clear user-visible error message on load/decode/play failures while preserving the exact track label.",
       "acceptanceCriteria": [
-        "The HTML head contains metadata for the site that uses the same configured website name string (at minimum: title/og:title).",
-        "No new visible text appears on the landing page after these metadata changes."
+        "The audio player successfully plays the track in a deployed build (not only locally).",
+        "If /assets/20-dollears-in-my-pocket.mp3 is missing or fails to load, the page shows an English error message near the player (and does not silently fail).",
+        "The track label text remains exactly: \"20 dollears in my pocket\"."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/lib/siteMetadata.ts",
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add audio load/play error handling for the <audio> element that references /assets/20-dollears-in-my-pocket.mp3: track an error state via audio error events and/or play() promise rejection, and render a clear English error message near the player (suggesting refresh or checking the asset path). Keep the track label text exactly \"20 dollears in my pocket\"."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Ensure required static media (portrait photo and MP3) are present under frontend public assets so deployed builds can fetch them via absolute URLs without backend changes.",
+      "acceptanceCriteria": [
+        "A square portrait photo asset exists at a stable public path and is the one used by the landing page photo component.",
+        "The MP3 file is present at /assets/20-dollears-in-my-pocket.mp3 in the deployed build output and returns a successful HTTP response when requested.",
+        "No backend changes are required for serving the photo/audio."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/20-dollears-in-my-pocket.mp3",
           "operation": "create",
-          "description": "Create a small helper to apply head metadata using the configured website name (at minimum setting document title and ensuring an og:title meta tag exists/updates) without affecting visible UI."
+          "description": "Place the MP3 file into the public static assets directory so it is included in the frontend build output and served in production at the absolute URL /assets/20-dollears-in-my-pocket.mp3."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Wire the site metadata helper to run on initial load using the configured website name, ensuring og:title and document title match while keeping the rendered page text unchanged (still only the website name)."
+          "description": "Verify the landing page is wired to the public absolute URLs for static media: photo at /assets/generated/iman-photo.dim_1024x1024.jpg with placeholder fallback /assets/generated/photo-placeholder.dim_1024x1024.png, and audio source at /assets/20-dollears-in-my-pocket.mp3, so deployed builds do not depend on non-public build paths."
         }
       ]
     }

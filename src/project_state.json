@@ -1,118 +1,42 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
-  "summary": "Pivot project scope from an AI girlfriend chat app to a simple personal website/landing page that, on open, shows only the user's name and website name: \"Iman limbu\".",
-  "architectural_notes": [
-    "Deployment domain/slug must be 5–50 characters and contain only letters, numbers, and hyphens (no parentheses)."
-  ],
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
   "known_issues": [
-    "Current deployment/domain name includes parentheses, causing repeated validation errors: must be 5–50 chars and only letters, numbers, and hyphens."
+    "Music is not working on the deployed site",
+    "User photo is missing/not displayed on the site"
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
+  "imageRequirements": "## Required Images\n- Square portrait photo (iman-photo.dim_1024x1024.jpg)",
   "existing_features": [
     {
-      "id": "feature-build-a-single-page-conversational-companion-app-ai-girlfriend-where-the-user-can-chat-with-a-friendly-romantic-but-respectful-persona-via-a-message-thread-ui-send-message-see-replies-timestamps-and-basic-typing-indicator",
-      "title": "Build a single-page conversational companion app (“AI girlfriend”) where the user can chat with a friendly, romantic-but-respectful persona via a message thread UI (send message, see replies, timestamps, and basic typing indicator).",
+      "id": "feature-fix-the-landing-page-photo-so-the-user-s-photo-reliably-displays-in-production-rather-than-failing-to-load-from-the-current-google-photos-share-url-https-photos-app-goo-gl-uswyakrbtbzie7aq8-use-a-local-static-photo-asset-as-the-primary-source-when-present-and-keep-a-graceful-fallback-to-the-existing-placeholder-image-assets-generated-photo-placeholder-dim-1024x1024-png-if-the-local-photo-is-missing-or-fails-to-load",
+      "title": "Fix the landing page photo so the user’s photo reliably displays in production, rather than failing to load from the current Google Photos share URL (https://photos.app.goo.gl/UswyaKrbtbzie7AQ8). Use a local static photo asset as the primary source when present, and keep a graceful fallback to the existing placeholder image (/assets/generated/photo-placeholder.dim_1024x1024.png) if the local photo is missing or fails to load.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-an-on-device-non-llm-reply-engine-that-generates-companion-responses-using-deterministic-rules-1-intent-detection-via-keyword-matching-2-a-persona-style-guide-tone-vocabulary-boundaries-and-3-controlled-randomness-from-a-curated-response-library-so-replies-feel-varied-without-using-any-external-ai-llm-services",
-      "title": "Implement an on-device (non-LLM) reply engine that generates companion responses using deterministic rules: (1) intent detection via keyword matching, (2) a persona style guide (tone, vocabulary, boundaries), and (3) controlled randomness from a curated response library so replies feel varied without using any external AI/LLM services.",
+      "id": "feature-fix-the-landing-page-music-player-so-the-track-loads-and-plays-reliably-in-production-using-the-local-static-audio-file-path-currently-referenced-by-the-app-assets-20-dollears-in-my-pocket-mp3-add-user-visible-error-handling-so-that-if-the-audio-file-cannot-be-fetched-decoded-the-ui-clearly-indicates-the-track-failed-to-load-and-suggests-refreshing-or-checking-the-asset-path",
+      "title": "Fix the landing page music player so the track loads and plays reliably in production using the local static audio file path currently referenced by the app (/assets/20-dollears-in-my-pocket.mp3). Add user-visible error handling so that if the audio file cannot be fetched/decoded, the UI clearly indicates the track failed to load and suggests refreshing or checking the asset path.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-user-configurable-companion-settings-companion-name-relationship-vibe-e-g-sweet-playful-supportive-and-conversation-style-short-balanced-long-settings-must-immediately-affect-generated-replies",
-      "title": "Add user-configurable companion settings: companion name, relationship “vibe” (e.g., Sweet, Playful, Supportive), and conversation style (Short / Balanced / Long). Settings must immediately affect generated replies.",
+      "id": "feature-ensure-all-required-static-media-assets-are-present-in-the-frontend-build-output-under-the-public-static-assets-path-so-that-the-deployed-site-can-fetch-them-via-absolute-urls-1-the-user-photo-asset-and-2-the-mp3-file",
+      "title": "Ensure all required static media assets are present in the frontend build output under the public static assets path so that the deployed site can fetch them via absolute URLs: (1) the user photo asset and (2) the MP3 file.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
-    },
-    {
-      "id": "feature-create-a-coherent-cozy-visual-theme-suitable-for-a-romantic-companion-app-warm-neutrals-soft-gradients-gentle-typography-rounded-cards-and-apply-it-consistently-across-the-app-ui",
-      "title": "Create a coherent, cozy visual theme suitable for a romantic companion app (warm neutrals, soft gradients, gentle typography, rounded cards) and apply it consistently across the app UI.",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-generate-and-add-required-static-visual-assets-avatar-small-ui-accents-and-render-them-from-frontend-static-assets-not-via-backend",
-      "title": "Generate and add required static visual assets (avatar + small UI accents) and render them from frontend static assets (not via backend).",
-      "reqIds": [
-        "REQ-6"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-change-the-browser-tab-page-title-to-exactly-iman-limbu",
-      "title": "Change the browser tab/page title to exactly \"Iman limbu\".",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-replace-the-current-app-ui-with-a-minimal-landing-page-so-that-on-initial-load-the-only-visible-on-page-text-is-exactly-iman-limbu-no-buttons-no-chat-ui-no-footer-text-no-other-labels",
-      "title": "Replace the current app UI with a minimal landing page so that on initial load the only visible on-page text is exactly \"Iman limbu\" (no buttons, no chat UI, no footer text, no other labels).",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-introduce-a-single-source-of-truth-for-the-website-name-site-title-branding-string-and-ensure-it-is-used-consistently-for-both-a-the-browser-tab-page-title-and-b-the-only-visible-on-page-text-on-initial-load",
-      "title": "Introduce a single source of truth for the website name (site title/branding string), and ensure it is used consistently for both (a) the browser tab/page title and (b) the only visible on-page text on initial load.",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-basic-html-metadata-that-reflects-the-same-website-name-for-common-previews-search-contexts-e-g-document-title-and-open-graph-title-without-adding-any-additional-visible-ui-text",
-      "title": "Add basic HTML metadata that reflects the same website name for common previews/search contexts (e.g., document title and Open Graph title), without adding any additional visible UI text.",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "version": 1
     }
   ],
-  "new_feature_requests": [
-    {
-      "id": "AR-1",
-      "summary": "Create an AI girlfriend app (conversational companion)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Persist chat history per authenticated user in the Motoko backend (Internet Identity) with APIs to: get current conversation, append a message, and clear conversation.",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Create a minimal landing page where the only visible content on load is the name/title \"Iman limbu\" (as both the page/website name and displayed text).",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Update the website name (site/page title/branding) to the desired name (user to specify)",
-      "reqIds": [],
-      "status": "pending"
-    }
-  ],
-  "gameProjectType": "none",
-  "projectName": "Iman limbu",
+  "new_feature_requests": [],
+  "projectName": "Fix missing photo and non-working music on landing page",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
